@@ -1,0 +1,175 @@
+<title> Game </title>
+
+<script type="text/javascript" src="script/soundmanager2.js"></script>
+<script type="text/javascript" src="script/loadsoundchrome.js"></script>
+
+<center>
+    <script type="text/javascript" src="script/processing-1.4.1.js"></script>
+    <script type="text/processing" data-processing-target="mycanvas">
+
+/* @pjs globalKeyEvents = "true"; */
+
+	minions = loadImage("image/minions2 copy 1.png")
+	minionsy1 = -50;
+	minionsy2 = -45;
+	minionsy3 = -45;
+	minionsx1 = 1000;
+	minionsx2 = 975;
+	minionsx3 = 915;
+
+	sx = 50;
+	sy = 50;
+	m3 = -2;
+	m4 = -3;
+	counter3= 20;
+	counter1 = 0;
+	counter2= 0;
+	control1 = 0;
+	control2 = 0;
+	control3= 0;
+	scontrol3 = 0
+	bing = 0;
+	
+void setup()
+{  
+	size( 1147, 660);  
+    background(0,0,0);
+    frameRate( 30 );
+    sr = loadImage("image/map.jpg")
+    n=1;
+	while (n <= 4)
+	{
+		minions[n] = loadImage("image/minions2 copy "+n+".jpg");
+		n = n + 1;
+	}
+	d1 = 0;
+	d2 = 0;
+	d3 = 0;
+	d4 = 0;
+	d5 = 0;
+	d6 = 0;
+
+	control1=0;
+	control2=0;
+	control3=0;
+	control4=0;
+	scontrol3=0;
+
+
+
+}
+
+void draw()
+{
+	image(sr,0,0);
+	
+	counter1 = counter1 + 1;
+	if(counter1 > 120)
+	{
+		control1 = 1;
+	}
+	image(minions,minionsx1,minionsy1,sx,sy);
+	if( control1 ==1)
+	{
+	minionsx1 = minionsx1 - 2;
+	minionsy1 = minionsy1 + 2;
+	}
+	d1 = (int)sqrt(sq((minionsx1+25)-(msx+80))+sq((minionsy1+25)-(msy+15)));
+	d4 = (int)sqrt(sq((minionsx1+25)-(msx+20))+sq((minionsy1+25)-(msy+40)));
+	if( d<25)
+	{
+		control4=1;
+	}
+
+	if( d4<25)
+	{
+		control4=1;
+	}
+
+	if(control4=1)
+	{
+		control2 = 1;	 
+		msx = msx +1000;
+		if(scontrol3 = 1)
+		{
+		control3 += 1;
+		}
+	}
+	image(minions,minionsx2,minionsy2,sx2,sy2);
+	if ( counter1 > 200)
+	{
+		control1 = 2;
+	}
+	if( control1 == 2)
+	{
+		minionsy2 = minionsy2 + 2;
+		minionsx2 = minionsx2 - 2;
+		minionsy3 = minionsy3 + 3;
+		minionsx3 = minionsx3 - 3;
+	}
+	scontrol3 = 0;
+	d2 = (int)sqrt(sq((minionsx2+25)-(msx+80))+sq((minionsy2+25)-(msy+15)));
+	d5 = (int)sqrt(sq((minionsx2+25)-(msx+20))+sq((minionsy2+25)-(msy+40)));
+	if( d2<20)
+	{
+		control2 = 3;	 
+		msx = msx +1000;
+		scontrol3 = 1;
+		if(scontrol3 = 1)
+		{
+		control3 += 1;
+		}
+		
+	}
+	if( d5<20)
+	{
+		control2 = 3;	 
+		msx = msx +1000;
+		if(scontrol3 = 1)
+		{
+		control3 += 1;
+		}
+	}
+	if(control2 ==3)
+	{
+		minionsy2 = minionsy2 + 1000 ;
+		minionsx2 = minionsx2 + 2;
+	}
+	image(minions,minionsx3,minionsy3,sx3,sy3);
+	d3 = (int)sqrt(sq((minionsx3+25)-(msx+80))+sq((minionsy3+25)-(msy+15)));
+	d6 = (int)sqrt(sq((minionsx3+25)-(msx+20))+sq((minionsy3+25)-(msy+40)));
+	if( d3<20)
+	{
+		control2 = 4;	 
+		msx = msx +1000;
+		if(scontrol3 = 1)
+		{
+		control3 += 1;
+		}
+	}
+	if( d6 < 20)
+	{
+		control2 = 4;	 
+		msx = msx +1000;
+		if(scontrol3 = 1)
+		{
+		control3 += 1;
+		}
+	}
+
+	if(control2 ==4)
+	{
+		minionsy3 = minionsy3 + 1000 ;
+		minionsx3 = minionsx3 + 2;
+	}
+		if(control3 == 3)
+	{
+		link("../victory/victory.html");
+	}
+
+}
+    
+    </script>
+    <canvas id="mycanvas"></canvas>
+ 	</center>
+
